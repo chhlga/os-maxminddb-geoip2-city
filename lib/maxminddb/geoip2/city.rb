@@ -10,13 +10,16 @@ module MaxMindDB
   end
 
   class Result
-    def city_name_full
-      state = self.subdivisions.find{|s| s.iso_code.length == 2}
-      state_code = state.iso_code if state
-      city_name = self.city.name if self.city
+    def city_name
+      if self.city
+        self.city.name
+      end
+    end
 
-      if state_code and city_name
-        "#{city_name}, #{state_code}"
+    def state_code
+      state = self.subdivisions.find{|s| s.iso_code.length == 2}
+      if state
+        state_code = state.iso_code
       end
     end
   end
