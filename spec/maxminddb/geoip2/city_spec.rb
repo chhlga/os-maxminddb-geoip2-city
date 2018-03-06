@@ -12,6 +12,7 @@ describe MaxMindDB::GeoIP2::City do
   end
 
   it "supports city lookup" do
-    expect(default_db.lookup('8.8.8.8').city.name).to eq("Mountain View")
+    result = default_db.lookup('2601:600:9680:7420:2110:f421:efed:3837')
+    expect(result.city_name_full).to eq("Bothell, WA")
   end
 end
