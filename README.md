@@ -23,8 +23,8 @@ Or install it yourself as:
 ```ruby
 require 'maxminddb/geoip2/city'
 
-MaxMindDB.default_city_db.lookup('8.8.8.8').city.name
-# => "Mountain View"
+MaxMindDB.default_city_db.lookup('73.140.126.16').city_name_full
+# => "Kirkland, WA"
 ```
 
 ## Development

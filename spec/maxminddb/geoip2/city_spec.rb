@@ -11,7 +11,19 @@ describe MaxMindDB::GeoIP2::City do
     expect(default_db.class).to eq(MaxMindDB::Client)
   end
 
-  it "supports city lookup" do
-    expect(default_db.lookup('8.8.8.8').city.name).to eq("Mountain View")
+  it "supports IPV4 city lookup" do
+    result = default_db.lookup('73.140.126.16')
+    expect(result.city_name).to eq("Kirkland")
   end
+
+  it "supports IPV6 city lookup" do
+    result = default_db.lookup('2601:600:9680:7420:2110:f421:efed:3837')
+    expect(result.city_name).to eq("Bothell")
+  end
+
+  it "supports state lookup" do
+    result = default_db.lookup('73.140.126.16')
+    expect(result.state_code).to eq("WA")
+  end
+
 end
