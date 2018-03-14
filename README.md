@@ -4,6 +4,12 @@ This gem bundles the GeoIP2-City.mmdb database along with the [MaxMinDB gem](htt
 
 ## Installation
 
+This gem requires git-lfs to download the db file. To install git-lfs on macos -
+
+```bash
+brew install git-lfs
+git lfs install
+```
 Add this line to your application's Gemfile:
 
 ```ruby
@@ -26,6 +32,13 @@ require 'maxminddb/geoip2/city'
 MaxMindDB.default_city_db.lookup('73.140.126.16').city_name_full
 # => "Kirkland, WA"
 ```
+## Troubleshooting
+
+```
+maxminddb.rb:24:in `initialize': invalid file format (RuntimeError)
+```
+
+indicates that the gem was installed without git-lfs and the db file has not been downloaded. If installed via bundler, remove the gem folder from bundle and then `bundle install`. If installed as a standalone gem, uninstall and reinstall the gem.
 
 ## Development
 
