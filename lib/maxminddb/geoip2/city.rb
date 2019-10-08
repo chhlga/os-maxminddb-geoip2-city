@@ -6,7 +6,11 @@ module MaxMindDB
     return @default_city_db if @default_city_db
 
     default_db_path = File.join(File.dirname(__FILE__), 'db', 'GeoIP2-City.mmdb')
-    @default_city_db = MaxMindDB.new(default_db_path)
+    @default_city_db = MaxMindDB.new(default_db_path, MaxMindDB::LOW_MEMORY_FILE_READER)
+  end
+
+  def MaxMindDB.clear_default_city_db
+    @default_city_db = nil
   end
 
   class Result
